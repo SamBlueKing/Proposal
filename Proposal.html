@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Someone Special 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(to right, #ffd6ec, #fffde1);
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    section {
+      display: none;
+      padding: 60px 20px;
+      min-height: 100vh;
+      transition: opacity 0.5s;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    h1, h2 {
+      color: #d63384;
+    }
+
+    .heart-button {
+      background: #ff69b4;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 24px;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .heart-button:hover {
+      transform: scale(1.1);
+      background: #ff1493;
+    }
+
+    .flower {
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/616/616408.png');
+      background-size: cover;
+      animation: pop 2s ease-out forwards;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.5);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section id="intro" class="active">
+    <h1>Hey Asa'm,Nwayi oma'm 💕</h1>
+    <p>I made this just for you. Ready for a little adventure?</p>
+    <button class="heart-button" onclick="nextPage('q1')">Yes, show me 😍</button>
+  </section>
+
+  <section id="q1">
+    <h2>Question 1 💬</h2>
+    <p>What's your relationship with me?</p>
+    <button class="heart-button" onclick="wrongAnswer()">I have a crush on you🙃</button>
+    <button class="heart-button" onclick="nextPage('q2')">My Man 😘</button>
+  </section>
+
+  <section id="q2">
+    <h2>Question 2 💬</h2>
+    <p>Would you stick with me forever?</p>
+    <button class="heart-button" onclick="wrongAnswer()">Nah, too busy 😅</button>
+    <button class="heart-button" onclick="nextPage('proposal')">Absolutely! 💃</button>
+  </section>
+
+  <section id="proposal">
+    <h2>So Here’s the Big Question... 💍</h2>
+    <p>Will you be my special person forever? 🥺❤️</p>
+    <button class="heart-button" onclick="celebrateYes()">YES! 💗</button>
+    <button class="heart-button" onclick="wrongAnswer()">Let me think... 😬</button>
+  </section>
+
+  <section id="final-message">
+    <h1>YAY! 🎉 You said YES!</h1>
+    <p>I can't wait to keep making you smile every day.I love you 💞</p>
+  </section>
+
+  <script>
+    function nextPage(id) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function wrongAnswer() {
+      alert("Hmm... not quite! Try again, love 💌");
+    }
+
+    function celebrateYes() {
+      nextPage('final-message');
+      showFlowers();
+    }
+
+    function showFlowers() {
+      for (let i = 0; i < 50; i++) {
+        const flower = document.createElement('div');
+        flower.className = 'flower';
+        flower.style.left = Math.random() * 100 + 'vw';
+        flower.style.top = Math.random() * 100 + 'vh';
+        document.body.appendChild(flower);
+        setTimeout(() => flower.remove(), 2000);
+      }
+    }
+  </script>
+</body>
+</html>
